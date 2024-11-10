@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Collection</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="header">
+        <h1>Quote Collection</h1>
+
+        <!--Navigation Bar-->
+        <nav class="navbar">
+            <a href="index.html" class="active">Home</a>
+            <a href="#">Link</a>
+            <a href="#">Link</a>
+            <a href="#">Link</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="add-quote-section">
+            <h2>Add Your New Qoute</h2>
+            <input type="text" id="quoteText" placeholder="Enter quote" required>
+            <input type="text" id="quoteAuthor" placeholder="Author" required>
+            <button class="add-quote-btn">Add Quote</button>
+        </section>
+
+        <section class="quote-list-section">
+            <h2>Your Quotes</h2>
+            <table class="quoteTable">
+                <thead>
+                    <tr>
+                        <th>Quote</th>
+                        <th>Author</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="quoteList">
+                    <!-- Quotes will be populated here dynamically-->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
