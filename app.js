@@ -38,3 +38,15 @@ function addQuote() {
 }
 
 
+// Function to edit a quote
+function editQuote(index) {
+    // Save changes when new text and author is entered
+    const text = document.getElementById('quoteText').value.trim();
+    const author = document.getElementById('quoteAuthor').value.trim();
+    // Checks if inputs are filled out 
+    if (text && author) {
+        quotes[index] = { text, author }; // Update quote
+        displayQuotes(); // Update display
+    }
+}
+
