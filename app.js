@@ -38,3 +38,6 @@ function addQuote() {
 }
 
 
+// Function to edit a quote
+function editQuote() {
+
