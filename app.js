@@ -37,46 +37,12 @@ function addQuote() {
     }
 }
 
-<<<<<<< HEAD
-// Function to edit a quote
-function editQuote(index) {
-    const text = prompt("Edit Quote:", quotes[index].text);
-    const author = prompt("Edit Author:", quotes[index].author);
-
-    if (text && author) {
-        quotes[index] = { text, author }; // Update quote in array
-        displayQuotes(); // Update display
-    }
-}
-
-function editQuote(index) {
-    // Save changes when new text and author is entered
-    const text = document.getElementById('quoteText').value.trim();
-    const author = document.getElementById('quoteAuthor').value.trim();
-    // Checks if inputs are filled out 
-    if (text && author) {
-        quotes[index] = { text, author }; // Update quote
-        displayQuotes(); // Update display
-    }
-}
-
-// Function to delete a quote
-function deleteQuote(index) {
-    quotes.splice(index, 1); // Delete quote from array at the specified index
-    displayQuotes(); // Update display
-}
-
-// Attach addQuote function to the button with ID "addQuoteBtn"
-document.getElementById('addQuoteBtn').onclick = addQuote;
-
-// Initial display of quotes (if any)
-
-
 // Function to edit a quote
 function editQuote(index) {
     // Save changes when new text and author is entered
-    const text = prompt("Edit quote text:', quote.text); // Show current text
+    const text = prompt("Edit quote text:', quote.text"); 
     const author = prompt("Edit author name", quote.author); // Show current author
+   
     // Checks if inputs are filled out 
     if (text && author) {
         quotes[index] = { text: text, author: author }; // Update quote
@@ -87,12 +53,17 @@ function editQuote(index) {
     }
 }
 
-
-
-=======
 // Function to delete a quote
 function deleteQuote() {
         quotes.splice(index, 1); // Delete quote from array of a specific index
         displayQuotes(); // Update display
 }
->>>>>>> origin/kenilp04-patch-6
+
+//Event Listener for "Add Quote" button
+document.getElementById('addQuoteBtn').onclick = addQuote;
+
+//Inital dsisplay of Quotes (if any) 
+displayQuotes();
+
+
+
