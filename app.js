@@ -37,4 +37,8 @@ function addQuote() {
     }
 }
 
-
+// Function to delete a quote
+function deleteQuote() {
+        quotes.splice(index, 1); // Delete quote from array of a specific index
+        displayQuotes(); // Update display
+}
