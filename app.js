@@ -38,3 +38,21 @@ function addQuote() {
 }
 
 
+
+// Function to edit a quote
+function editQuote(index) {
+    // Save changes when new text and author is entered
+    const text = prompt("Edit quote text:', quote.text); // Show current text
+    const author = prompt("Edit author name", quote.author); // Show current author
+    // Checks if inputs are filled out 
+    if (text && author) {
+        quotes[index] = { text: text, author: author }; // Update quote
+        displayQuotes(); // Update display
+    }
+    else {
+        alert("Edit both text and author section to make changes to the quote"); // Tells the user to enter both text and author to edit the quote
+    }
+}
+
+
+
