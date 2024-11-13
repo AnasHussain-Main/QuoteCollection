@@ -39,30 +39,28 @@ function addQuote() {
 
 // Function to edit a quote
 function editQuote(index) {
-    // Save changes when new text and author is entered
-    const text = prompt("Edit quote text:', quote.text"); 
-    const author = prompt("Edit author name", quote.author); // Show current author
+    // Use prompt to get new values from the user
+    const text = prompt("Edit quote text:", quotes[index].text); 
+    const author = prompt("Edit author name:", quotes[index].author); 
    
-    // Checks if inputs are filled out 
     if (text && author) {
         quotes[index] = { text: text, author: author }; // Update quote
         displayQuotes(); // Update display
-    }
-    else {
-        alert("Edit both text and author section to make changes to the quote"); // Tells the user to enter both text and author to edit the quote
+    } else {
+        alert("Please enter both the text and author to make changes to the quote."); // Tells the user to enter both text and author to edit the quote
     }
 }
 
 // Function to delete a quote
-function deleteQuote() {
-        quotes.splice(index, 1); // Delete quote from array of a specific index
-        displayQuotes(); // Update display
+function deleteQuote(index) {
+    quotes.splice(index, 1); // Delete quote from array at the specified index
+    displayQuotes(); // Update display
 }
 
-//Event Listener for "Add Quote" button
+// Event Listener for "Add Quote" button
 document.getElementById('addQuoteBtn').onclick = addQuote;
 
-//Inital dsisplay of Quotes (if any) 
+// Initial display of quotes (if any)
 displayQuotes();
 
 
