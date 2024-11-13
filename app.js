@@ -37,6 +37,7 @@ function addQuote() {
     }
 }
 
+<<<<<<< HEAD
 // Function to edit a quote
 function editQuote(index) {
     const text = prompt("Edit Quote:", quotes[index].text);
@@ -88,3 +89,10 @@ function editQuote(index) {
 
 
 
+=======
+// Function to delete a quote
+function deleteQuote() {
+        quotes.splice(index, 1); // Delete quote from array of a specific index
+        displayQuotes(); // Update display
+}
+>>>>>>> origin/kenilp04-patch-6
