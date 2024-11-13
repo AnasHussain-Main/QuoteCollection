@@ -1,4 +1,4 @@
-// Create an Array to store quotes
+// Array to store quotes
 let quotes = [];
 
 // Function to display all quotes in the table
@@ -37,4 +37,36 @@ function addQuote() {
     }
 }
 
+// Function to edit a quote
+function editQuote(index) {
+    const text = prompt("Edit Quote:", quotes[index].text);
+    const author = prompt("Edit Author:", quotes[index].author);
+
+    if (text && author) {
+        quotes[index] = { text, author }; // Update quote in array
+        displayQuotes(); // Update display
+    }
+}
+
+function editQuote(index) {
+    // Save changes when new text and author is entered
+    const text = document.getElementById('quoteText').value.trim();
+    const author = document.getElementById('quoteAuthor').value.trim();
+    // Checks if inputs are filled out 
+    if (text && author) {
+        quotes[index] = { text, author }; // Update quote
+        displayQuotes(); // Update display
+    }
+}
+
+// Function to delete a quote
+function deleteQuote(index) {
+    quotes.splice(index, 1); // Delete quote from array at the specified index
+    displayQuotes(); // Update display
+}
+
+// Attach addQuote function to the button with ID "addQuoteBtn"
+document.getElementById('addQuoteBtn').onclick = addQuote;
+
+// Initial display of quotes (if any)
 
