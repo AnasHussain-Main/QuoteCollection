@@ -8,36 +8,63 @@
 </head>
 
 <body>
-    <header class="header">
-        <h1>Quote Collection</h1>
-    </header>
+    <div id="loginSection">
+        <h2>Login</h2>
+        <input type="text" id="loginUsername" placeholder="Username" required>
+        <br>
+        <br>
+        <input type="password" id="loginPassword" placeholder="Password" required>
+        <br>
+        <br>
+        <button id="loginBtn">Login</button>
+        <p>Dont have an account? <button id="showRegisterBtn">Register</button></p>
+    </div>
 
-    <main>
-        <section class="add-quote-section">
-            <h2>Add Your New Quote</h2>
-            <input type="text" id="quoteText" placeholder="Enter quote" required>
-            <br><br>
-            <input type="text" id="quoteAuthor" placeholder="Author" required>
-            <br><br>
-            <button id="addQuoteBtn" class="add-quote-btn">Add Quote</button>
-        </section>
+    <div id="registerSection" style="display: none;">
+        <h2>Register</h2>
+        <input type="text" id="registerUsername" placeholder="Username" required>
+        <br>
+        <br>
+        <input type="password" id="registerPassword" placeholder="Password" required>
+        <br>
+        <br>
+        <button id="registerBtn">Register</button>
+        <p>Already have an account? <button id="showLoginBtn">Login</button></p>
+    </div>
 
-        <section class="quote-list-section">
-            <h2>Your Quotes</h2>
-            <table class="quoteTable">
-                <thead>
-                    <tr>
-                        <th>Quote</th>
-                        <th>Author</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="quoteList">
-                    <!-- Quotes will be populated here dynamically -->
-                </tbody>
-            </table>
-        </section>
-    </main>
+    <div id="mainContent">
+        
+        <header class="header">
+            <h1>Quote Collection</h1>
+        </header>
+    
+        <main>
+            <section class="add-quote-section">
+                <h2>Add Your New Quote</h2>
+                <input type="text" id="quoteText" placeholder="Enter quote" required>
+                <br><br>
+                <input type="text" id="quoteAuthor" placeholder="Author" required>
+                <br><br>
+                <button id="addQuoteBtn" class="add-quote-btn">Add Quote</button>
+            </section>
+    
+            <section class="quote-list-section">
+                <h2>Your Quotes</h2>
+                <table class="quoteTable">
+                    <thead>
+                        <tr>
+                            <th>Quote</th>
+                            <th>Author</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="quoteList">
+                        <!-- Quotes will be populated here dynamically -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
 
     <script src="app.js"></script>
 </body>
