@@ -1,6 +1,56 @@
 // Array to store quotes
 let quotes = [];
 let editIndex = null; // Track quote index and set to null when adding a new quote
+let users = JSON.parse(localStorage.getItem('users')) || [];
+let currentUser = null;
+
+//Function for lagin and registration page
+function showRegister() {
+    document.getElementById('loginSection').style.display ='none';
+    document.getElementById('registerSection').style.display ='block';
+    document.getElementById('mainContent').style.display ='none';
+}
+
+function showLogin() {
+    document.getElementById('loginSection').style.display ='none';
+    document.getElementById('registerSection').style.display ='block';
+    document.getElementById('mainContent').style.display ='none';
+}
+
+function register() {
+    const username = document.getElementById('registerUsername').value.trim();
+    const password = document.getElementById('registerPassword').value.trim();
+
+    if (username && password) {
+        if (users.some(user => user.username === username)) {
+            alert('Username already exists');
+            return;
+        }
+        users.push({ username, password, quotes: [] });
+        localStorage.setItem('users', JSON.stringify(users));
+        alert('Registration successfull! Please Login.');
+        showLogin();
+    }else{
+        alert('Please fill in all the Fiels.');
+    }
+}
+
+function login() {
+    const username = document.getElementById('loginUsername').value.trim();
+    const password = document.getElementById('loginPassword').value.trim();
+
+    const user = users.find(u => u.username === username && u.password === password);
+
+    if (user) {
+        currentUser = user;
+        quotes = user.quotes;
+        document.getElementById('loginSection').style.display ='none';
+        document.getElementById('mainContent').style.display ='block';
+        displayQuotes();
+    }else {
+        alert('Invalid username or password');
+    }
+}
 
 // Function to display all quotes in the table
 function displayQuotes() {
@@ -33,6 +83,12 @@ function addQuote() {
             quotes[editIndex] = {text, author}; // Update quote
             editIndex = null; // Reset index
         }
+        // updates users qoutes in storage
+        currentUser.quotes = quotes;
+        const userIndex = users.findIndex(u => u.username === currentUser.username);
+        users[userIndex] = currentUser;
+        localStorage.setItem('users', JSON.stringfy(users));
+        
         displayQuotes(); // Update display
 
         // Clear input fields
@@ -63,5 +119,7 @@ document.getElementById('addQuoteBtn').onclick = addQuote;
 // Initial display of quotes (if any)
 displayQuotes();
 
-
-
+document.getElementById('showRegisterBtn').onclick = showRegister;
+document.getElementById('showLoginBtn').onclick = showLogin;
+document.getElementById('registerBtn').onclick = register;
+document.getElementById('loginBtn').onclick = login;
