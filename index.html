@@ -8,6 +8,20 @@
 </head>
 
 <body>
+    <!-- Navigation Bar -->
+    <div id="navbar">
+        <!-- List to hold the navigation items. Displays either Login or Logout based on the user's authentication status. -->
+        <nav>
+            <!-- Navigation list -->
+            <ul>
+                <!-- Login link which is hidden by default -->
+                <li><a href="#" id="loginNav" style="display: none;">Login</a></li>
+                <!-- Logout link which is hidden by default -->
+                <li><a href="#" id="logoutNav" style="display: none;">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+
     <div id="loginSection">
         <h2>Login</h2>
         <input type="text" id="loginUsername" placeholder="Username" required>
