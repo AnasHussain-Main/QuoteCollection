@@ -8,45 +8,30 @@
 </head>
 
 <body>
-    <!-- Navigation Bar -->
-    <div id="navbar">
-        <!-- Unordered list to hold the navigation items -->
-        <nav>
-            <!-- Navigation list -->
-            <ul>
-                <!-- Login link which is hidden by default -->
-                <li><a href="#" id="loginNav" style="display: none;">Login</a></li>
-                <!-- Logout link which is hidden by default -->
-                <li><a href="#" id="logoutNav" style="display: none;">Logout</a></li>
-            </ul>
-        </nav>
-
+    <!-- Login Section -->
     <div id="loginSection">
         <h2>Login</h2>
         <input type="text" id="loginUsername" placeholder="Username" required>
-        <br>
-        <br>
+        <br><br>
         <input type="password" id="loginPassword" placeholder="Password" required>
-        <br>
-        <br>
+        <br><br>
         <button id="loginBtn">Login</button>
-        <p>Dont have an account? <button id="showRegisterBtn">Register</button></p>
+        <p>Don't have an account? <button id="showRegisterBtn">Register</button></p>
     </div>
 
+    <!-- Register Section -->
     <div id="registerSection" style="display: none;">
         <h2>Register</h2>
         <input type="text" id="registerUsername" placeholder="Username" required>
-        <br>
-        <br>
+        <br><br>
         <input type="password" id="registerPassword" placeholder="Password" required>
-        <br>
-        <br>
+        <br><br>
         <button id="registerBtn">Register</button>
         <p>Already have an account? <button id="showLoginBtn">Login</button></p>
     </div>
 
-    <div id="mainContent">
-        
+    <!-- Main Content (Hidden Initially) -->
+    <div id="mainContent" style="display: none;">
         <header class="header">
             <h1>Quote Collection</h1>
         </header>
