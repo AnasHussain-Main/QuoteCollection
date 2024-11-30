@@ -1,7 +1,7 @@
 let quotes = [];
 let editIndex = null; // Track quote index for editing
 let users = JSON.parse(localStorage.getItem('users')) || [];
-let currentUser = null;
+let currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
 // Function to clear input fields
 function clearInputs() {
@@ -11,6 +11,16 @@ function clearInputs() {
     document.getElementById('registerPassword').value = '';
     document.getElementById('quoteText').value = '';
     document.getElementById('quoteAuthor').value = '';
+}
+
+// Function to ensure a user is authenticated before performing protected actions
+function ensureAuthenticated() {
+    if (!currentUser) {
+        alert("You must log in to access this action.");
+        showLogin();
+        return false;
+    }
+    return true;
 }
 
 // Function to show the registration page
@@ -41,7 +51,7 @@ function register() {
         }
         users.push({ username, password, quotes: [] });
         localStorage.setItem('users', JSON.stringify(users));
-        alert('Registration successful! Please log in.');
+        alert('Registration successful! Please login.');
         showLogin();
     } else {
         alert('Please fill in all fields.');
@@ -57,6 +67,7 @@ function login() {
 
     if (user) {
         currentUser = user;
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
         quotes = user.quotes;
         document.getElementById('loginSection').style.display = 'none';
         document.getElementById('mainContent').style.display = 'block';
@@ -96,6 +107,28 @@ function updateNavigationBar() {
     }
 }
 
+// Function for user log out
+function logout() {
+    currentUser = null;
+    localStorage.removeItem('currentUser');
+    updateNavigationBar();
+    document.getElementById('mainContent').style.display = 'none';
+    document.getElementById('loginSection').style.display = 'block';
+}
+
+// Function to update navigation bar
+function updateNavigationBar() {
+    const loginLink = document.getElementById('loginLink');
+    const logoutLink = document.getElementById('logoutLink');
+    if (currentUser) {
+        loginLink.style.display = 'none';
+        logoutLink.style.display = 'block';
+    } else {
+        loginLink.style.display = 'block';
+        logoutLink.style.display = 'none';
+    }
+}
+
 // Function to display all quotes
 function displayQuotes() {
     const quoteList = document.getElementById('quoteList');
@@ -117,6 +150,8 @@ function displayQuotes() {
 
 // Function to add or update a quote
 function addQuote() {
+    if (!ensureAuthenticated()) return;
+
     const text = document.getElementById('quoteText').value.trim();
     const author = document.getElementById('quoteAuthor').value.trim();
 
@@ -140,6 +175,8 @@ function addQuote() {
 
 // Function to edit a quote
 function editQuote(index) {
+    if (!ensureAuthenticated()) return;
+
     document.getElementById('quoteText').value = quotes[index].text;
     document.getElementById('quoteAuthor').value = quotes[index].author;
     editIndex = index;
@@ -147,6 +184,8 @@ function editQuote(index) {
 
 // Function to delete a quote
 function deleteQuote(index) {
+    if (!ensureAuthenticated()) return;
+
     quotes.splice(index, 1);
     currentUser.quotes = quotes;
     const userIndex = users.findIndex(u => u.username === currentUser.username);
@@ -162,8 +201,12 @@ document.getElementById('showLoginBtn').onclick = showLogin;
 document.getElementById('registerBtn').onclick = register;
 document.getElementById('loginBtn').onclick = login;
 
-// Display quotes for logged-in user on initial load
+// Initialize app
 if (currentUser) {
     quotes = currentUser.quotes;
+    updateNavigationBar();
     displayQuotes();
+} else {
+    updateNavigationBar();
 }
+
