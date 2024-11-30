@@ -1,23 +1,21 @@
-// Array to store quotes
 let quotes = [];
 let editIndex = null; // Track quote index for editing
 let users = JSON.parse(localStorage.getItem('users')) || [];
 let currentUser = null;
 
-// Function to ensure a user is authenticated before performing protected actions
-function ensureAuthenticated() {
-    if (!currentUser) {
-        alert("You must log in to access this action.");
-        showLogin();
-        return false;
-    }
-    return true;
+// Function to clear input fields
+function clearInputs() {
+    document.getElementById('loginUsername').value = '';
+    document.getElementById('loginPassword').value = '';
+    document.getElementById('registerUsername').value = '';
+    document.getElementById('registerPassword').value = '';
+    document.getElementById('quoteText').value = '';
+    document.getElementById('quoteAuthor').value = '';
 }
 
 // Function to show the registration page
 function showRegister() {
-    document.getElementById('loginUsername').value = '';
-    document.getElementById('loginPassword').value = '';
+    clearInputs();
     document.getElementById('loginSection').style.display = 'none';
     document.getElementById('registerSection').style.display = 'block';
     document.getElementById('mainContent').style.display = 'none';
@@ -25,8 +23,7 @@ function showRegister() {
 
 // Function to show the login page
 function showLogin() {
-    document.getElementById('registerUsername').value = '';
-    document.getElementById('registerPassword').value = '';
+    clearInputs();
     document.getElementById('loginSection').style.display = 'block';
     document.getElementById('registerSection').style.display = 'none';
     document.getElementById('mainContent').style.display = 'none';
@@ -39,12 +36,12 @@ function register() {
 
     if (username && password) {
         if (users.some(user => user.username === username)) {
-            alert('Username already exists');
+            alert('Username already exists.');
             return;
         }
         users.push({ username, password, quotes: [] });
         localStorage.setItem('users', JSON.stringify(users));
-        alert('Registration successful! Please login.');
+        alert('Registration successful! Please log in.');
         showLogin();
     } else {
         alert('Please fill in all fields.');
@@ -90,8 +87,6 @@ function displayQuotes() {
 
 // Function to add or update a quote
 function addQuote() {
-    if (!ensureAuthenticated()) return;
-
     const text = document.getElementById('quoteText').value.trim();
     const author = document.getElementById('quoteAuthor').value.trim();
 
@@ -107,8 +102,7 @@ function addQuote() {
         users[userIndex] = currentUser;
         localStorage.setItem('users', JSON.stringify(users));
         displayQuotes();
-        document.getElementById('quoteText').value = '';
-        document.getElementById('quoteAuthor').value = '';
+        clearInputs();
     } else {
         alert('Please enter both a quote and an author.');
     }
@@ -116,8 +110,6 @@ function addQuote() {
 
 // Function to edit a quote
 function editQuote(index) {
-    if (!ensureAuthenticated()) return;
-
     document.getElementById('quoteText').value = quotes[index].text;
     document.getElementById('quoteAuthor').value = quotes[index].author;
     editIndex = index;
@@ -125,8 +117,6 @@ function editQuote(index) {
 
 // Function to delete a quote
 function deleteQuote(index) {
-    if (!ensureAuthenticated()) return;
-
     quotes.splice(index, 1);
     currentUser.quotes = quotes;
     const userIndex = users.findIndex(u => u.username === currentUser.username);
@@ -143,6 +133,7 @@ document.getElementById('registerBtn').onclick = register;
 document.getElementById('loginBtn').onclick = login;
 
 // Display quotes for logged-in user on initial load
-if (currentUser) displayQuotes();
-
-
+if (currentUser) {
+    quotes = currentUser.quotes;
+    displayQuotes();
+}
