@@ -61,6 +61,7 @@ function login() {
         document.getElementById('loginSection').style.display = 'none';
         document.getElementById('mainContent').style.display = 'block';
         displayQuotes();
+        updateNavigationBar();
     } else {
         alert('Invalid username or password.');
     }
