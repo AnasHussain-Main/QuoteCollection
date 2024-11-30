@@ -78,8 +78,9 @@ function logout() {
     document.getElementById('mainContent').style.display = 'none';
     // Show login
     document.getElementById('loginSection').style.display = 'block';
-//Function to check user status and update the navigation bar
+}
 
+//Function to check user status and update the navigation bar
 function updateNavigationBar() {
     if (currentUser) {
         // If the user is logged in, hide the login link
