@@ -38,15 +38,19 @@ function register() {
 function login() {
     const username = document.getElementById('loginUsername').value.trim();
     const password = document.getElementById('loginPassword').value.trim();
-
     const user = users.find(u => u.username === username && u.password === password);
 
     if (user) {
         currentUser = user;
+        // Save the user's information in local storage
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
         quotes = user.quotes;
         document.getElementById('loginSection').style.display ='none';
         document.getElementById('mainContent').style.display ='block';
         displayQuotes();
+        // Update navigation to show Logout
+        updateNavigationBar();
     }else {
         alert('Invalid username or password');
     }
