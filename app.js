@@ -66,7 +66,20 @@ function login() {
     }
 }
 
+// Function for user log out
+function logout() {
+    // Clear logged user
+    currentUser = null;
+    // Remove user data from local storage
+    localStorage.removeItem('currentUser');
+    // Update and show login link and hide logout link
+    updateNavigationBar();
+    // Show main content 
+    document.getElementById('mainContent').style.display = 'none';
+    // Show login
+    document.getElementById('loginSection').style.display = 'block';
 //Function to check user status and update the navigation bar
+
 function updateNavigationBar() {
     if (currentUser) {
         // If the user is logged in, hide the login link
@@ -80,20 +93,6 @@ function updateNavigationBar() {
         document.getElementById('logoutLink').style.display = 'none';
     }
 }
-
-// Function for user log out
-function logout() {
-    // Clear logged user
-    currentUser = null;
-    // Remove user data from local storage
-    localStorage.removeItem('currentUser');
-    // Update and show login link and hide logout link
-    updateNavigationBar();
-    // Show main content 
-    document.getElementById('mainContent').style.display = 'none';
-    // Show login
-    document.getElementById('loginSection').style.display = 'block';
-
 
 // Function to display all quotes
 function displayQuotes() {
