@@ -4,6 +4,16 @@ let editIndex = null; // Track quote index for editing
 let users = JSON.parse(localStorage.getItem('users')) || [];
 let currentUser = null;
 
+// Function to ensure a user is authenticated before performing protected actions
+function ensureAuthenticated() {
+    if (!currentUser) {
+        alert("You must log in to access this action.");
+        showLogin();
+        return false;
+    }
+    return true;
+}
+
 // Function to show the registration page
 function showRegister() {
     document.getElementById('loginUsername').value = '';
@@ -80,6 +90,8 @@ function displayQuotes() {
 
 // Function to add or update a quote
 function addQuote() {
+    if (!ensureAuthenticated()) return;
+
     const text = document.getElementById('quoteText').value.trim();
     const author = document.getElementById('quoteAuthor').value.trim();
 
@@ -104,6 +116,8 @@ function addQuote() {
 
 // Function to edit a quote
 function editQuote(index) {
+    if (!ensureAuthenticated()) return;
+
     document.getElementById('quoteText').value = quotes[index].text;
     document.getElementById('quoteAuthor').value = quotes[index].author;
     editIndex = index;
@@ -111,6 +125,8 @@ function editQuote(index) {
 
 // Function to delete a quote
 function deleteQuote(index) {
+    if (!ensureAuthenticated()) return;
+
     quotes.splice(index, 1);
     currentUser.quotes = quotes;
     const userIndex = users.findIndex(u => u.username === currentUser.username);
@@ -128,4 +144,5 @@ document.getElementById('loginBtn').onclick = login;
 
 // Display quotes for logged-in user on initial load
 if (currentUser) displayQuotes();
+
 
