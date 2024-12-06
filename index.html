@@ -9,62 +9,61 @@
 </head>
 
 <body>
-    <!-- Navigation Bar -->
+    <div class="form-container">
+        <!-- Navigation Bar -->
+        <div id="loginSection">
+            <form class="login-form">
+                <h2>Log In</h2>
+                <input type="text" id="loginUsername" placeholder="Email" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button type="button" id="loginButton">Log In</button>
 
-    <!-- Login Section -->
-    <div id="loginSection">
-        <h2>Login</h2>
-        <input type="text" id="loginUsername" placeholder="Username" required>
-        <br><br>
-        <input type="password" id="loginPassword" placeholder="Password" required>
-        <br><br>
-        <button id="loginBtn">Login</button>
-        <p>Don't have an account? <button id="showRegisterBtn">Register</button></p>
-    </div>
+                <p class="separator"><span>Or sign in with</span></p>
+                
+                <div class="social-login">
+                    <button class="social-button google-button">Google</button>
+                    <button class="social-button facebook-button">Facebook</button>
+                    <button class="social-button apple-button">Apple</button>
+                </div>
+                
+                <div class="register-container">
+                    <p>Don't have an account?</p>
+                    <button class="register-button" type="button" id="showRegisterButton">Register</button>
+                </div>
+            </form>
+        </div>
 
     <!-- Register Section -->
     <div id="registerSection" style="display: none;">
-        <h2>Register</h2>
-        <input type="text" id="registerUsername" placeholder="Username" required>
-        <br><br>
-        <input type="password" id="registerPassword" placeholder="Password" required>
-        <br><br>
-        <button id="registerBtn">Register</button>
-        <p>Already have an account? <button id="showLoginBtn">Login</button></p>
+        <form>
+            <h2>Register</h2>
+            <input type="text" id="registerUsername" placeholder="Username" required>
+            <input type="password" id="registerPassword" placeholder="Password" required>
+            <button type="button" id="registerButton">Register</button>
+            <button type="button" id="backToLoginButton">Back to Login</button>
+            </form>
     </div>
 
-    <!-- Main Content (Hidden Initially) -->
+    <!-- Main Content -->
     <div id="mainContent" style="display: none;">
-        <header class="header">
-            <h1>Quote Collection</h1>
-        </header>
-    
-        <main>
-            <section class="add-quote-section">
-                <h2>Add Your New Quote</h2>
-                <input type="text" id="quoteText" placeholder="Enter quote" required>
-                <br><br>
-                <input type="text" id="quoteAuthor" placeholder="Author" required>
-                <br><br>
-                <button id="addQuoteBtn">Add Quote</button>
-            </section>
-    
-            <section class="quote-list-section">
-                <h2>Your Quotes</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Quote</th>
-                            <th>Author</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="quoteList">
-                        <!-- Quotes will be populated here dynamically -->
-                    </tbody>
-                </table>
-            </section>
-        </main>
+        <h2>Welcome, <span id="usernameDisplay"></span></h2>
+        <button onclick="logout()">Logout</button>
+
+        <!-- Quote Management Section -->
+        <div id="quoteSection">
+            <h3>Your Favorite Quotes</h3>
+            <ul id="quoteList"></ul>
+            <button type="button" onclick="showAddQuoteForm()">Add a Quote</button>
+            <button type="button" onclick="deleteAllQuotes()">Delete All Quotes</button>
+        </div>
+
+        <!-- Add Quote Form -->
+        <div id="addQuoteForm" style="display:none;">
+            <input type="text" id="quoteText" placeholder="Enter quote" required>
+            <input type="text" id="quoteAuthor" placeholder="Enter author" required>
+            <button type="button" onclick="addQuote()">Add Quote</button>
+            <button type="button" onclick="cancelAddQuote()">Cancel</button>
+        </div>
     </div>
 
     <script src="app.js"></script>
