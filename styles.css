@@ -38,7 +38,7 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin: 0 auto 30px;
     max-width: 500px;
-    text-align: center;
+    text-align: left;
     background-color: #f8f9fa;
     border: 1px solid #e9ecef;
 }
